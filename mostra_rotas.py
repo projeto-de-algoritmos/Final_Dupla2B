@@ -11,14 +11,14 @@ def gerar_caminhos(grafo, caminho, final):
             yield caminho_maior
 
 
-def merge(vet):
+def merge_sort(vet):
     if len(vet)>1:
         mid = len(vet)//2
         lefthalf = vet[:mid]
         righthalf = vet[mid:]
 
-        merge(lefthalf)
-        merge(righthalf)
+        merge_sort(lefthalf)
+        merge_sort(righthalf)
 
         i=0
         j=0
@@ -42,16 +42,14 @@ def merge(vet):
             j=j+1
             k=k+1
 
-# vet = [4,5,1,2,3]
 def main(grafo_valparaiso_ceilandia):
     caminhos =[]
     for caminho in gerar_caminhos(grafo_valparaiso_ceilandia, ['Valparaiso'], 'Ceilandia'):
         peso =0
-        #print(caminho)
         c = caminho
         for i in range(len(caminho)-1):
             peso += grafo_valparaiso_ceilandia[caminho[i]][caminho[i+1]]
         caminhos.append([caminho, peso])
-    merge(caminhos)
+    merge_sort(caminhos)
     return caminhos
 
