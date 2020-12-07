@@ -1,6 +1,7 @@
 import dijkstra
 import engarrafamento
 import rota
+import mostra_rotas
 grafo_valparaiso_ceilandia = { 
         "Valparaiso" : { "SantaMaria" : 3.5 },
         "SantaMaria" : {"EPTC": 9.5, "GuaraII":22.5, "CruzeiroNovo": 32.4},
@@ -20,7 +21,8 @@ def print_menu():
     print("1. insere engarramento em algum caminho")
     print("2. Mostra o melhor caminho do valparaiso a ceilandia") 
     print("3. Abre o maps com o melhor caminho")
-    print("4. Sair")
+    print("4. Mostrar todos os caminhos do melhor para o pior")
+    print("5. Sair")
     print(67 * "-")
   
 
@@ -30,9 +32,9 @@ if __name__ == '__main__':
     
     while loop:
         print_menu()
-        choice = input("Entre sua opcao [1-4]: ")            
+        choice = input("Entre sua opcao [1-5]: ")            
         if choice=='1':
-            print("Opcao 2 foi escolhida")
+            print("Opcao 1 foi escolhida")
             print("os pontos de referencias de valparaiso a ceilandia: SantaMaria, EPTC, GuaraII, CruzeiroNovo, SamambaiaSul , BR-070\n")
             inicio_engarrafamento = input('digite o inicio do engarrafamento\n')
             fim_engarrafamento = input('digite o fim do engarrafamento\n')
@@ -45,18 +47,30 @@ if __name__ == '__main__':
                     tipoengarrafamento = "pesado"
             grafo = engarrafamento.main(grafo_valparaiso_ceilandia,inicio_engarrafamento,fim_engarrafamento, tipoengarrafamento)    
         elif choice=='2':
-            print("Opcao 3 foi escolhida")
+            print("Opcao 2 foi escolhida")
             if grafo != {}:
                 melhorrota = dijkstra.dijkstra_distancia(grafo,"Valparaiso","Ceilandia")
             else:
                 melhorrota = dijkstra.dijkstra_distancia(grafo_valparaiso_ceilandia,"Valparaiso","Ceilandia")           
         elif choice=='3':
-            print("Opcao 4 foi escolhida")
+            print("Opcao 3 foi escolhida")
             if melhorrota == "":
                 print("Escolha uma rota usando opção 3")
             else:   
                 rota.main(melhorrota)
         elif choice=='4':
+            print("Opcao 4 foi escolhida")
+            rotas = mostra_rotas.main(grafo_valparaiso_ceilandia)
+            for i in range(len(rotas)):
+                rota = ' '
+                for j in range(len(rotas[i][0])):
+                    if j == len(rotas[i][0]) - 1:
+                        rota += str(rotas[i][0][j])
+                    else:
+                        rota = rota + str(rotas[i][0][j]) + '-->'
+                    
+                print(rota)
+        elif choice=='5':
             print("Opcao 5 foi escolhida")
             print('Saindo....')
             loop=False
