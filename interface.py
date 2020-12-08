@@ -1,4 +1,5 @@
-from tkinter import *  
+from tkinter import *
+from tkinter import messagebox
 import dijkstra
 import engarrafamento
 import rota
@@ -41,39 +42,47 @@ def interface():
     label3 = Entry(app)
 
     def btn1():
-        teste = mostra_rotas.main(grafo_valparaiso_ceilandia)
-        print(teste)
+        rotas = mostra_rotas.main(grafo_valparaiso_ceilandia)
+        pr = ''
+        for i in range(len(rotas)):
+            rota = ' '
+            for j in range(len(rotas[i][0])):
+                if j == len(rotas[i][0]) - 1:
+                    rota += str(rotas[i][0][j])
+                else:
+                    rota = rota + str(rotas[i][0][j]) + '-->'
+            pr += rota
+        messagebox.showinfo("rotas", pr)
     def btn2():
         global grafo;
         global melhorrota;
-        print('teste')
+
         if grafo != {}:
-            print('teste')
+    
             melhorrota = dijkstra.dijkstra_distancia(grafo,"Valparaiso","Ceilandia")
         else:
             melhorrota = dijkstra.dijkstra_distancia(grafo_valparaiso_ceilandia,"Valparaiso","Ceilandia")
-
+        messagebox.showinfo("Melhor rota", melhorrota)
     def btn4():
-        #global grafo;
         global melhorrota;
         if melhorrota == "":
-            print("Escolha uma rota usando opção 3")
+            messagebox.showinfo("Mapa", "escolha uma rota antes de escolher essa opção")
         else:   
             rota.main(melhorrota)
     def btn3():
         global grafo;
         grafo = engarrafamento.main(grafo_valparaiso_ceilandia,label1.get(),label2.get(), label3.get())
-        print(grafo) 
+        messagebox.showinfo("Engarrafamento", grafo)
+
 
     btn1 = Button(app, text="Mostrar",background="#C4C4C4", command=btn1) 
     btn2 = Button(app, text="Mostrar",background="#C4C4C4", command=btn2)
     btn3 = Button( text="Inserir",background="#C4C4C4", command=btn3)
     btn4 = Button(app, text="Abrir",background="#C4C4C4", command=btn4)
 
-    imagem = PhotoImage(file="valparaiso_ceilandia.png")
+    imagem = PhotoImage(file="./valparaiso_ceilandia.png")
     panel = Label(app, image = imagem )
     panel.place(x=280, y=10)
-
 
     label1.place(x =10, y=370, width=120, height=37)
     label2.place(x =140, y=370, width=120, height=37)
