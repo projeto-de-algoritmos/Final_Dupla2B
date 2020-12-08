@@ -10,6 +10,7 @@
 | 15/0136862  |  Lucas Alexandre Fernandes Martins |
 
 ## Sobre 
+O projeto consiste em calcular a melhor rota da cidade valparaiso até a cidade de ceilandia e ordenar da pior para melhor rota, a partir de alguns pontos definidos pela equipe atravez do google maps. O usuario ira poder incluir engarrafamentos em algun pontos do trajeto, assim o algoritimo ira considerar o engarrafamento para o calculo do melhor caminho.
 
 ### Pontos definidos:
 ![Pontos](./assets/valparaiso_ceilandia.jpeg)
