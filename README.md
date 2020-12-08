@@ -39,4 +39,4 @@ siga as intruções do terminal
 
 ## Video 
 
-O video com a explicação sobre o projeto está dentro da pasta video.
+O video com a explicação sobre o projeto está dentro da pasta arq-zip.
