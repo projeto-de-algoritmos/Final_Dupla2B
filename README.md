@@ -16,6 +16,12 @@ O projeto consiste em calcular a melhor rota da cidade valparaiso até a cidade 
 ![Pontos](./assets/valparaiso_ceilandia.jpeg)
 
 ## Screenshots
+![Opção 1](./assets/print1.png)
+
+![Opção 2](./assets/print2.png)
+
+![Opção 3](./assets/print3.png)
+
 
 ## Instalação 
 **Linguagem**: Python<br>
